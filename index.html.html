@@ -1,0 +1,510 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Rohan Dalve — Clipper & Content Distribution Partner</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,500;0,600;0,700;1,500&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@500;600;700&display=swap');
+
+  :root{
+    --bg: #0C0C0D;
+    --surface: #131314;
+    --border: #262626;
+    --accent: #FF4A32;
+    --text: #F5F4EF;
+    --text-dim: #8E8D89;
+  }
+
+  *{ margin:0; padding:0; box-sizing:border-box; }
+  html{ scroll-behavior:smooth; }
+  body{
+    background:var(--bg);
+    color:var(--text);
+    font-family:'Inter', sans-serif;
+    overflow-x:hidden;
+  }
+  @media (prefers-reduced-motion: reduce){
+    *{ animation-duration:0.01ms !important; transition-duration:0.01ms !important; scroll-behavior:auto !important; }
+  }
+
+  .wrap{ max-width:1080px; margin:0 auto; padding:0 32px; }
+  a{ color:inherit; }
+  a:focus-visible, button:focus-visible{ outline:2px solid var(--accent); outline-offset:3px; }
+  em{ font-style:italic; color:var(--accent); }
+
+  /* NAV */
+  header.nav{
+    position:sticky; top:0; z-index:50;
+    background:rgba(12,12,13,0.88);
+    backdrop-filter:blur(10px);
+    border-bottom:1px solid var(--border);
+  }
+  .nav-inner{
+    display:flex; align-items:center; justify-content:space-between;
+    padding:20px 32px;
+    max-width:1080px; margin:0 auto;
+  }
+  .brand{
+    font-family:'Fraunces', serif;
+    font-weight:600;
+    font-size:18px;
+  }
+  .nav-cta{
+    font-family:'JetBrains Mono', monospace;
+    font-size:12.5px;
+    font-weight:600;
+    text-decoration:none;
+    color:var(--text);
+    border:1px solid var(--border);
+    padding:10px 18px;
+    border-radius:2px;
+    transition:border-color 0.2s ease, color 0.2s ease;
+  }
+  .nav-cta:hover{ border-color:var(--accent); color:var(--accent); }
+
+  /* HERO */
+  .hero{ padding:100px 0 72px; }
+  .eyebrow{
+    font-family:'JetBrains Mono', monospace;
+    font-size:12.5px;
+    font-weight:600;
+    letter-spacing:0.08em;
+    text-transform:uppercase;
+    color:var(--text-dim);
+    display:flex;
+    align-items:center;
+    gap:10px;
+    margin-bottom:28px;
+  }
+  .eyebrow::before{ content:""; width:24px; height:1px; background:var(--accent); }
+
+  h1.headline{
+    font-family:'Fraunces', serif;
+    font-weight:600;
+    font-size:clamp(38px, 6vw, 66px);
+    line-height:1.08;
+    letter-spacing:-0.01em;
+    max-width:760px;
+  }
+
+  .sub{
+    margin-top:26px;
+    font-size:17.5px;
+    line-height:1.65;
+    color:var(--text-dim);
+    max-width:540px;
+  }
+
+  .hero-cta-row{
+    margin-top:38px;
+    display:flex;
+    gap:14px;
+    flex-wrap:wrap;
+  }
+  .btn-primary{
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+    background:var(--accent);
+    color:#0C0C0D;
+    font-weight:700;
+    font-size:14.5px;
+    text-decoration:none;
+    padding:14px 26px;
+    border-radius:2px;
+    transition:transform 0.15s ease, box-shadow 0.2s ease;
+  }
+  .btn-primary:hover{ transform:translateY(-2px); box-shadow:0 14px 30px -14px rgba(255,74,50,0.55); }
+  .btn-secondary{
+    display:inline-flex;
+    align-items:center;
+    font-weight:600;
+    font-size:14.5px;
+    text-decoration:none;
+    padding:14px 22px;
+    border-radius:2px;
+    border:1px solid var(--border);
+    color:var(--text);
+    transition:border-color 0.2s ease;
+  }
+  .btn-secondary:hover{ border-color:var(--text-dim); }
+
+  /* STAT BLOCK */
+  .stat-block{
+    margin-top:64px;
+    border-top:1px solid var(--border);
+    border-bottom:1px solid var(--border);
+    padding:36px 0;
+    display:flex;
+    align-items:baseline;
+    gap:24px;
+    flex-wrap:wrap;
+  }
+  .stat-num{
+    font-family:'Fraunces', serif;
+    font-weight:600;
+    font-size:clamp(48px, 8vw, 84px);
+    line-height:1;
+    font-variant-numeric:tabular-nums;
+    color:var(--accent);
+    min-width:9ch;
+    display:inline-block;
+  }
+  .stat-label{
+    font-family:'JetBrains Mono', monospace;
+    font-size:13px;
+    color:var(--text-dim);
+    max-width:240px;
+    line-height:1.5;
+    text-transform:uppercase;
+    letter-spacing:0.04em;
+    flex-shrink:0;
+  }
+  @media (max-width:640px){
+    .stat-num{ min-width:0; }
+  }
+
+  /* SECTION */
+  .section{ padding:84px 0; border-top:1px solid var(--border); }
+  .section-head{ margin-bottom:44px; max-width:640px; }
+  .kicker{
+    font-family:'JetBrains Mono', monospace;
+    font-size:12px;
+    font-weight:600;
+    letter-spacing:0.08em;
+    text-transform:uppercase;
+    color:var(--accent);
+    margin-bottom:12px;
+    display:block;
+  }
+  h2.section-title{
+    font-family:'Fraunces', serif;
+    font-weight:600;
+    font-size:clamp(28px, 4vw, 40px);
+    letter-spacing:-0.01em;
+  }
+  .section-desc{ margin-top:12px; color:var(--text-dim); font-size:16px; line-height:1.6; }
+
+  /* GRID */
+  .grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit, minmax(270px, 1fr));
+    gap:1px;
+    background:var(--border);
+    border:1px solid var(--border);
+  }
+  .card{
+    background:var(--surface);
+    overflow:hidden;
+    display:flex;
+    flex-direction:column;
+    transition:background 0.2s ease;
+  }
+  .card:hover{ background:#191919; }
+  .thumb-wrap{
+    position:relative;
+    width:100%;
+    aspect-ratio:9/16;
+    max-height:320px;
+    overflow:hidden;
+    background:#000;
+  }
+  .thumb-wrap img{ width:100%; height:100%; object-fit:cover; display:block; filter:saturate(0.92); }
+  .thumb-tag{
+    position:absolute;
+    top:12px; left:12px;
+    font-family:'JetBrains Mono', monospace;
+    font-size:10.5px;
+    font-weight:600;
+    letter-spacing:0.04em;
+    text-transform:uppercase;
+    background:rgba(12,12,13,0.8);
+    border:1px solid var(--border);
+    color:var(--text-dim);
+    padding:5px 10px;
+  }
+  .card-body{ padding:22px 22px 24px; display:flex; flex-direction:column; flex:1; }
+  .card-title{ font-size:15px; font-weight:500; line-height:1.45; margin-bottom:18px; color:var(--text); }
+  .card-views{
+    margin-top:auto;
+    padding-top:16px;
+    border-top:1px solid var(--border);
+    font-family:Georgia, 'Times New Roman', Times, serif;
+    font-size:21px;
+    font-weight:700;
+    color:#FFFFFF;
+    letter-spacing:0.01em;
+  }
+
+  /* SERVICES */
+  .service-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit, minmax(230px, 1fr));
+    gap:1px;
+    background:var(--border);
+    border:1px solid var(--border);
+  }
+  .service-card{ background:var(--surface); padding:28px 24px; }
+  .service-card .idx{
+    font-family:'JetBrains Mono', monospace;
+    font-size:12px;
+    color:var(--accent);
+    margin-bottom:16px;
+    display:block;
+  }
+  .service-card h3{ font-family:'Fraunces', serif; font-size:19px; font-weight:600; margin-bottom:8px; }
+  .service-card p{ font-size:14px; color:var(--text-dim); line-height:1.6; }
+
+  /* WHO */
+  .tag-row{ display:flex; flex-wrap:wrap; gap:10px; }
+  .tag-pill{
+    font-family:'JetBrains Mono', monospace;
+    font-size:13px;
+    font-weight:500;
+    padding:10px 16px;
+    border:1px solid var(--border);
+    color:var(--text-dim);
+  }
+
+  /* CONTACT */
+  .contact{ text-align:left; padding:96px 0 110px; }
+  h2.big-cta{
+    font-family:'Fraunces', serif;
+    font-weight:600;
+    font-size:clamp(34px, 7vw, 68px);
+    line-height:1.08;
+    max-width:720px;
+  }
+  .contact-sub{ margin-top:20px; color:var(--text-dim); font-size:16px; max-width:440px; }
+  .dm-btn{
+    display:inline-flex;
+    align-items:center;
+    gap:10px;
+    margin-top:36px;
+    background:var(--accent);
+    color:#0C0C0D;
+    font-weight:700;
+    font-size:14.5px;
+    text-decoration:none;
+    padding:16px 30px;
+    border-radius:2px;
+    transition:transform 0.15s ease, box-shadow 0.15s ease;
+  }
+  .dm-btn:hover{ transform:translateY(-3px); box-shadow:0 14px 30px -12px rgba(255,74,50,0.5); }
+
+  footer{ border-top:1px solid var(--border); padding:26px 0; }
+  .footer-inner{
+    display:flex; justify-content:space-between; flex-wrap:wrap; gap:10px;
+    font-family:'JetBrains Mono', monospace;
+    font-size:11.5px; color:var(--text-dim); letter-spacing:0.02em;
+  }
+</style>
+</head>
+<body>
+
+<header class="nav">
+  <div class="nav-inner">
+    <div class="brand">Rohan Dalve</div>
+    <a class="nav-cta" href="https://www.instagram.com/rohann_dalve" target="_blank" rel="noopener">Message on IG →</a>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="wrap">
+    <div class="eyebrow">Clipper & Content Distribution Partner</div>
+    <h1 class="headline">Short-form clipping and distribution for agencies, founders, creators, and brands.</h1>
+    <p class="sub">I turn raw footage into clips that hold attention and get distributed to the right audience — built for people who need their content to actually perform.</p>
+
+    <div class="hero-cta-row">
+      <a class="btn-primary" href="#contact">Let's work together</a>
+      <a class="btn-secondary" href="#work">See the work</a>
+    </div>
+
+    <div class="stat-block">
+      <div class="stat-num" id="statCounter">0</div>
+      <div class="stat-label">100+ million views generated — crushing the algorithm across platforms.</div>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="work">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="kicker">Selected Work</span>
+      <h2 class="section-title">Real clips, real numbers</h2>
+      <p class="section-desc">A sample of published clips and their current view counts.</p>
+    </div>
+
+    <div class="grid">
+
+      <div class="card">
+        <div class="thumb-wrap">
+          <img src="https://img.youtube.com/vi/3Mp8dMfn_cw/hqdefault.jpg" alt="Podcast clip thumbnail 1" loading="lazy">
+          <span class="thumb-tag">Podcast Clip</span>
+        </div>
+        <div class="card-body">
+          <div class="card-title">"South Indian families eat only rice"</div>
+          <div class="card-views">9.2 million views</div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="thumb-wrap">
+          <img src="https://img.youtube.com/vi/mDEfx5hd-Wg/hqdefault.jpg" alt="Podcast clip thumbnail 2" loading="lazy">
+          <span class="thumb-tag">Business Podcast</span>
+        </div>
+        <div class="card-body">
+          <div class="card-title">"This strategy made ₹14,000 crore?"</div>
+          <div class="card-views">6.1 million views</div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="thumb-wrap">
+          <img src="https://img.youtube.com/vi/eJCje48gRvM/hqdefault.jpg" alt="Podcast clip thumbnail 6" loading="lazy">
+          <span class="thumb-tag">Featured Clip</span>
+        </div>
+        <div class="card-body">
+          <div class="card-title">Featured podcast clip</div>
+          <div class="card-views">5.3 million views</div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="thumb-wrap">
+          <img src="https://img.youtube.com/vi/3Qi4awpRAKU/hqdefault.jpg" alt="Podcast clip thumbnail 5" loading="lazy">
+          <span class="thumb-tag">Tech Podcast</span>
+        </div>
+        <div class="card-body">
+          <div class="card-title">"Stop ChatGPT, train with your data"</div>
+          <div class="card-views">3.8 million views</div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="thumb-wrap">
+          <img src="https://img.youtube.com/vi/eivufxkBDOU/hqdefault.jpg" alt="Podcast clip thumbnail 3" loading="lazy">
+          <span class="thumb-tag">Tech Podcast</span>
+        </div>
+        <div class="card-body">
+          <div class="card-title">"AI means not ChatGPT"</div>
+          <div class="card-views">3.2 million views</div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="thumb-wrap">
+          <img src="https://img.youtube.com/vi/d4YdBKUuORo/hqdefault.jpg" alt="Podcast clip thumbnail 4" loading="lazy">
+          <span class="thumb-tag">Tech Podcast</span>
+        </div>
+        <div class="card-body">
+          <div class="card-title">"Start AI with zero investment"</div>
+          <div class="card-views">1.8 million views</div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<section class="section" id="services">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="kicker">What I Do</span>
+      <h2 class="section-title">Clipping built for growth, not just posting</h2>
+    </div>
+    <div class="service-grid">
+      <div class="service-card">
+        <span class="idx">01</span>
+        <h3>Short-Form Clipping</h3>
+        <p>Turning long-form podcasts, interviews, and raw footage into clips built to hold attention.</p>
+      </div>
+      <div class="service-card">
+        <span class="idx">02</span>
+        <h3>Hooks & Retention</h3>
+        <p>Opening lines, captions, and pacing designed to stop the scroll in the first three seconds.</p>
+      </div>
+      <div class="service-card">
+        <span class="idx">03</span>
+        <h3>Content Distribution</h3>
+        <p>Getting finished clips onto the right platforms and in front of the right audience.</p>
+      </div>
+      <div class="service-card">
+        <span class="idx">04</span>
+        <h3>Ongoing Partnerships</h3>
+        <p>Continuous clipping support for agencies, founders, and creators scaling their content output.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="who">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="kicker">Who I Work With</span>
+      <h2 class="section-title">Agencies, founders, creators, and brands</h2>
+    </div>
+    <div class="tag-row">
+      <span class="tag-pill">Agencies</span>
+      <span class="tag-pill">Founders</span>
+      <span class="tag-pill">Top Creators</span>
+      <span class="tag-pill">Brands</span>
+      <span class="tag-pill">Podcasts</span>
+    </div>
+  </div>
+</section>
+
+<section class="section contact" id="contact">
+  <div class="wrap">
+    <h2 class="big-cta">Got content that deserves <em>more eyes</em> on it?</h2>
+    <div class="hero-cta-row" style="justify-content:flex-start; margin-top:36px;">
+      <a class="dm-btn" style="margin-top:0;" href="https://www.instagram.com/rohann_dalve" target="_blank" rel="noopener">Message @rohann_dalve →</a>
+      <a class="btn-secondary" href="mailto:rohandalve90@gmail.com">rohandalve90@gmail.com</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap footer-inner">
+    <span>© 2026 Rohan Dalve</span>
+    <span><a href="mailto:rohandalve90@gmail.com" style="text-decoration:underline;">rohandalve90@gmail.com</a></span>
+    <span>Clipper & Content Distribution Partner</span>
+  </div>
+</footer>
+
+<script>
+  // One-time count-up from 0 to 100,000,000+ when the stat scrolls into view
+  const statEl = document.getElementById('statCounter');
+  const target = 100000000;
+  let animated = false;
+
+  function formatNum(n){
+    return Math.floor(n).toLocaleString('en-US');
+  }
+
+  function runCount(){
+    if(animated) return;
+    animated = true;
+    const duration = 900;
+    const start = performance.now();
+    function frame(now){
+      const progress = Math.min((now - start) / duration, 1);
+      const eased = 1 - Math.pow(1 - progress, 3);
+      const current = eased * target;
+      statEl.textContent = formatNum(current) + (progress >= 1 ? '+' : '');
+      if(progress < 1) requestAnimationFrame(frame);
+    }
+    requestAnimationFrame(frame);
+  }
+
+  const observer = new IntersectionObserver((entries)=>{
+    entries.forEach(entry=>{
+      if(entry.isIntersecting) runCount();
+    });
+  }, { threshold: 0.5 });
+  observer.observe(statEl);
+</script>
+
+</body>
+</html>
